@@ -1,6 +1,6 @@
-FROM alpine:3.9
+FROM alpine:latest
 
-MAINTAINER pstauffer@confirm.ch
+MAINTAINER Thierry Couture <thierry@arabrab.com>
 
 #
 # Install all required dependencies.
@@ -8,8 +8,8 @@ MAINTAINER pstauffer@confirm.ch
 
 RUN apk --update upgrade && \
     apk add --update bind && \
+    apk add --update dhcp && \    
     rm -rf /var/cache/apk/*
-
 
 #
 # Add named init script.
@@ -18,17 +18,17 @@ RUN apk --update upgrade && \
 ADD init.sh /init.sh
 RUN chmod 750 /init.sh
 
-
 #
 # Define container settings.
 #
 
 VOLUME ["/etc/bind", "/var/log/named"]
+VOLUME ["/etc/dhcp"]
 
 EXPOSE 53/udp
+EXPOSE 67/udp 67/tcp
 
 WORKDIR /etc/bind
-
 
 #
 # Start named.
