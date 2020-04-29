@@ -1,13 +1,17 @@
 bind:
-  image: 'pstauffer/bind:stable'
-  container_name: 'bind'
+  image: 'tcouture/isc-dhcp-bind:latest'
+  container_name: 'isc-dhcp-bind'
 
   ports:
   - 53:53/udp
+  - 67:67/udp
+  - 67:67/tcp
 
   volumes:
-  - ./bindconfig:/etc/bind
+  - /mnt/user/appdata/isc-dhcp-bind/etc/bind:/etc/bind
   - /var/log/named:/var/log/named
-
+  - /mnt/user/appdata/isc-dhcp-bind/etc/dhcp:/etc/bind
+  - /var/lib/dhcpd:/var/lib/dhcpd
+  
   restart: always
   
