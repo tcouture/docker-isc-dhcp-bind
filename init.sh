@@ -63,7 +63,7 @@ chown -R ${USER}:${GROUP} /var/bind /etc/bind /var/run/named /var/log/named
 chmod -R o-rwx /var/bind /etc/bind /var/run/named /var/log/named
 echo "[DONE]"
 
-touch /var/lib/dhcp/dhcpd.leases
+touch /var/lib/dhcpd/dhcpd.leases
 
 #
 # Start named.
