@@ -23,7 +23,7 @@ RUN chmod 750 /init.sh
 #
 
 VOLUME ["/etc/bind", "/var/log/named"]
-VOLUME ["/etc/dhcp"]
+VOLUME ["/etc/dhcp", "/var/lib/dhcp/]
 
 EXPOSE 53/udp
 EXPOSE 67/udp 67/tcp
