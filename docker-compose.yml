@@ -1,5 +1,5 @@
 bind:
-  image: 'tcouture/isc-dhcp-bind:latest'
+  image: 'tcouture/isc-dhcp-bind'
   container_name: 'isc-dhcp-bind'
 
   ports:
