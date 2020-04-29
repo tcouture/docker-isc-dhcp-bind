@@ -17,8 +17,8 @@ ISC_GID_DEFAULT="101"
 COMMAND_BIND="/usr/sbin/named -u ${USER} -c /etc/bind/named.conf ${COMMAND_OPTIONS:=${COMMAND_OPTIONS_DEFAULT}}"
 COMMAND_DHCP="/usr/sbin/dhcpd -4 -f -d --no-pid -cf /etc/dhcp/dhcpd.conf"
 
-NAMED_UID_ACTUAL=$(id -u ${USER})
-NAMED_GID_ACTUAL=$(id -g ${GROUP})
+ISC_UID_ACTUAL=$(id -u ${USER})
+ISC_GID_ACTUAL=$(id -g ${GROUP})
 
 #
 # Display settings on standard out.
@@ -45,7 +45,7 @@ then
     echo "change user / group"
     deluser ${USER}
     addgroup -g ${ISC_GID} ${GROUP}
-    adduser -u ${ISC_UID} -G ${GROUP} -h /etc/bind -g 'Linux User named' -s /sbin/nologin -D ${USER}
+    adduser -u ${ISC_UID} -G ${GROUP} -h /etc/bind -g 'Linux User isc' -s /sbin/nologin -D ${USER}
     echo "[DONE]"
     echo "Set owner and permissions for old uid/gid files"
     find / -not \( -path /proc -prune \) -not \( -path /sys -prune \) -user ${ISC_UID_ACTUAL} -exec chown ${USER} {} \;
